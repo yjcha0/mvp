@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
+import 'package:mvp/widgets/category_appbar.dart';
 
 class MyFridgeScreen extends StatelessWidget {
   MyFridgeScreen({Key? key})
@@ -88,31 +89,12 @@ class MyFridgeScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20.h),
-              GestureDetector(
-                onTap: () {
+              CategoryAppbar(
+                text: "식재료 관리하기",
+                onPressed: () {
                   Navigator.of(context)
                       .push(createLeftRightRouteTo(MyFridgeStockScreen()));
                 },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 21.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '식재료 관리하기!',
-                        style: TextStyle(
-                          fontSize: 21.h,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_right_outlined,
-                        size: 30.adaptSize,
-                      ),
-                    ],
-                  ),
-                ),
               ),
               SizedBox(height: 20.h),
               Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
+import 'package:mvp/widgets/category_appbar.dart';
 import 'package:mvp/widgets/order_category_icon.dart';
 
 class RecipeScreen extends StatefulWidget {
@@ -86,35 +87,12 @@ class _RecipeScreenState extends State<RecipeScreen> {
                       child: AppbarSearchview(
                         padding: EdgeInsets.only(left: 21.h),
                         width: 300.h,
-                        hintText: "찾으시는 키워드를 입력하세요..",
+                        hintText: "주소를 입력하세요..",
                         controller: searchController,
                       ),
                     ),
                     SizedBox(width: 15.h),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showFilter = !showFilter;
-                        });
-                      },
-                      child: Container(
-                        width: 50.adaptSize,
-                        height: 50.adaptSize,
-                        padding: EdgeInsets.all(5.adaptSize),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.h),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.9),
-                              offset: Offset(0, 2.v),
-                              blurRadius: 2.v,
-                            )
-                          ],
-                        ),
-                        child: Image.asset(ImageConstant.imgSlider),
-                      ),
-                    ),
+                    AppbarImage(svgPath: ImageConstant.imgSearch),
                     SizedBox(width: 21.h),
                   ],
                 ),
@@ -244,27 +222,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: AppBar(
-                    leadingWidth: 2,
-                    centerTitle: false,
-                    backgroundColor: Colors.white,
-                    title: const Text(
-                      "있는 재료로 만들어 먹어요",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: const [
-                      Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        color: Colors.black,
-                        size: 27,
-                      ),
-                    ],
-                  ),
+                CategoryAppbar(
+                  text: "있는 재료로 만들어 먹어요",
+                  onPressed: () {},
                 ),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -333,27 +293,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: AppBar(
-                    leadingWidth: 2,
-                    centerTitle: false,
-                    backgroundColor: Colors.white,
-                    title: const Text(
-                      "몇가지만 더 구매하면 요리가능",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: const [
-                      Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        color: Colors.black,
-                        size: 27,
-                      ),
-                    ],
-                  ),
+                CategoryAppbar(
+                  text: "몇가지만 더 구매하면 요리 가능",
+                  onPressed: () {},
                 ),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -422,37 +364,16 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        createLeftRightRouteTo(
-                          const RecipeListScreen(),
-                        ),
-                      );
-                    },
-                    child: AppBar(
-                      leadingWidth: 2,
-                      centerTitle: false,
-                      backgroundColor: Colors.white,
-                      title: const Text(
-                        "인기 레시피",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                CategoryAppbar(
+                  text: "인기 레시피",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      createLeftRightRouteTo(
+                        const RecipeListScreen(),
                       ),
-                      actions: const [
-                        Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          color: Colors.black,
-                          size: 27,
-                        ),
-                      ],
-                    ),
-                  ),
+                    );
+                  },
                 ),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),

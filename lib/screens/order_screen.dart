@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
 import 'package:mvp/core/sizes.dart';
 import 'package:mvp/screens/order_detail_screen2.dart';
+import 'package:mvp/widgets/category_appbar.dart';
 import 'package:mvp/widgets/order_card.dart';
-import 'package:mvp/widgets/order_category_card.dart';
 import 'package:mvp/widgets/order_category_icon.dart';
 import 'package:mvp/widgets/order_onsale_card.dart';
 import 'package:mvp/widgets/order_recommend_card.dart';
@@ -56,7 +56,7 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
             ),
           ),
-          leadingWidth: 2.h + 10.adaptSize,
+          leadingWidth: 34.adaptSize,
           title: Align(
             alignment: Alignment.center,
             // margin: EdgeInsets.only(left: 21.h),
@@ -233,30 +233,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: AppBar(
-                    leadingWidth: 2,
-                    centerTitle: false,
-                    backgroundColor: Colors.white,
-                    title: const Text(
-                      "지금 냉장고에 없거나 얼마 안남았어요",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: [
-                      IconButton(
-                        onPressed: _onPressed,
-                        icon: const Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          color: Colors.black,
-                          size: 27,
-                        ),
-                      ),
-                    ],
-                  ),
+                CategoryAppbar(
+                  text: "얼마 안남았어요",
+                  onPressed: _onPressed,
                 ),
                 SingleChildScrollView(
                   clipBehavior: Clip.none,
@@ -293,62 +272,47 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   height: 30.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: AppBar(
-                    leadingWidth: 2,
-                    centerTitle: false,
-                    backgroundColor: Colors.white,
-                    title: const Text(
-                      "우리 동네 특가 세일",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: const [
-                      Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        color: Colors.black,
-                        size: 27,
-                      ),
-                    ],
-                  ),
+                CategoryAppbar(
+                  text: "우리 동네 특가 세일",
+                  onPressed: () {},
                 ),
                 SingleChildScrollView(
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      const SizedBox(
-                        width: 60,
+                      SizedBox(
+                        width: 80.v,
                       ),
                       OnSaleCard(
-                        lowerLimit: 0,
-                        upperLimit: 10,
-                        stepValue: 1,
-                        value: 0,
+                        text: "두부",
+                        image: ImageConstant.imgOrdertofu,
+                        originalPrice: "1000원",
+                        sale: "19%",
+                        price: "990원",
                       ),
-                      const SizedBox(
-                        width: 60,
-                      ),
-                      OnSaleCard(
-                        lowerLimit: 0,
-                        upperLimit: 10,
-                        stepValue: 1,
-                        value: 0,
-                      ),
-                      const SizedBox(
-                        width: 60,
+                      SizedBox(
+                        width: 80.v,
                       ),
                       OnSaleCard(
-                        lowerLimit: 0,
-                        upperLimit: 10,
-                        stepValue: 1,
-                        value: 0,
+                        text: "라면",
+                        image: ImageConstant.imgOrderramen,
+                        originalPrice: "1000원",
+                        sale: "19%",
+                        price: "990원",
                       ),
-                      const SizedBox(
-                        width: 20,
+                      SizedBox(
+                        width: 80.v,
+                      ),
+                      OnSaleCard(
+                        text: "감자칩",
+                        image: ImageConstant.imgOrderchips,
+                        originalPrice: "1000원",
+                        sale: "19%",
+                        price: "990원",
+                      ),
+                      SizedBox(
+                        width: 30.v,
                       ),
                     ],
                   ),
@@ -356,27 +320,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   height: 30.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.h),
-                  child: AppBar(
-                    leadingWidth: 2,
-                    centerTitle: false,
-                    backgroundColor: Colors.white,
-                    title: const Text(
-                      "우리 동네 추천 상품",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: const [
-                      Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        color: Colors.black,
-                        size: 27,
-                      ),
-                    ],
-                  ),
+                CategoryAppbar(
+                  text: "우리 동네 추천 상품",
+                  onPressed: () {},
                 ),
                 SingleChildScrollView(
                   clipBehavior: Clip.none,
