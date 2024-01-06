@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
-import 'package:mvp/screens/order_detail_screen.dart';
 
 class OrderCard extends StatelessWidget {
   final String foodImage;
   final String foodName;
+  final Function()? onTap;
+  final int date;
+  final int gram;
 
-  const OrderCard({
+  OrderCard({
     super.key,
     required this.foodImage,
     required this.foodName,
+    this.onTap,
+    required this.date,
+    required this.gram,
   });
+
+  bool liked = false;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OrderDetailScreen(),
-          ),
-        );
-      },
+      onTap: onTap,
       child: Container(
-        width: 140,
-        height: 200,
+        width: 170.adaptSize,
+        height: 210.adaptSize,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -38,43 +38,48 @@ class OrderCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(9.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    Icons.favorite_border,
-                    color: Color(0xFF999999),
-                  ),
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 100.adaptSize,
+              height: 100.adaptSize,
+              child: Image(
+                image: AssetImage(foodImage),
+                fit: BoxFit.fill,
               ),
-              SizedBox(
-                width: 80,
-                height: 70,
-                child: Image(
-                  image: AssetImage(foodImage),
-                  fit: BoxFit.fill,
-                ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              foodName,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+                fontSize: 20.adaptSize,
               ),
-              SizedBox(
-                height: 15.h,
+            ),
+            SizedBox(
+              height: 5.adaptSize,
+            ),
+            Text(
+              "구매한 지 $date일 됐어요",
+              style: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w400,
+                fontSize: 15.adaptSize,
               ),
-              Text(
-                foodName,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.h,
-                ),
+            ),
+            Text(
+              "현재 ${gram}g 남아있습니다",
+              style: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w400,
+                fontSize: 15.adaptSize,
               ),
-              const Text("구매한지 2주나 됐어요"),
-              const Text("현재 20g 남아있습니다"),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

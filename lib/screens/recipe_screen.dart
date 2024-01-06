@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
 import 'package:mvp/widgets/category_appbar.dart';
-import 'package:mvp/widgets/order_category_icon.dart';
 
 class RecipeScreen extends StatefulWidget {
   const RecipeScreen({Key? key}) : super(key: key);
@@ -39,19 +38,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                RecipeScreen.RecipeScreenTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: RecipeScreen.RecipeScreenTitle,
           actions: [
             Align(
               alignment: Alignment.center,
@@ -96,132 +83,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                     SizedBox(width: 21.h),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 30.h,
-                    bottom: 10.h,
-                  ),
-                  child: showCategory
-                      ? GridView.builder(
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 5,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: () {},
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: 70.adaptSize,
-                                      height: 70.adaptSize,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: const Color(0xFFB6D9ED),
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 17,
-                                    ),
-                                    child: Text(
-                                      "한식",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15.h,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      : GridView.builder(
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 5,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 5,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: () {},
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: 70.adaptSize,
-                                      height: 70.adaptSize,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: const Color(0xFFB6D9ED),
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 17,
-                                    ),
-                                    child: Text(
-                                      "한식",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15.h,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showCategory = !showCategory;
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 25.v),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "카테고리 전체 보기",
-                          style: TextStyle(
-                            fontSize: 15.h,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                OrderCategoryCard(categoryToShow: foodCategories),
                 CategoryAppbar(
                   text: "있는 재료로 만들어 먹어요",
                   onPressed: () {},

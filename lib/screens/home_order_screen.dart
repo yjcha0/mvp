@@ -20,38 +20,40 @@ class HomeOrderScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         key: scaffoldKey,
-        appBar: CustomAppBar(
-          height: 120.v,
-          title: Align(
-            alignment: Alignment.centerLeft,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: CupertinoButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const AddressSettingScreen(),
-                    ),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      currAddress,
-                      style: CustomTextStyles.titleLarge.copyWith(
-                        color: appTheme.black900,
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_drop_down_outlined,
-                      size: 32.adaptSize,
-                      color: Colors.black,
-                    ),
-                  ],
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 120.v,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          leadingWidth: 0,
+          titleSpacing: 0,
+          centerTitle: true,
+          title: CupertinoButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const AddressSettingScreen(),
                 ),
-              ),
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  currAddress,
+                  style: TextStyle(
+                    fontSize: 19.adaptSize,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_drop_down_outlined,
+                  size: 32.adaptSize,
+                  color: Colors.black,
+                ),
+              ],
             ),
           ),
           actions: [

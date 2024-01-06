@@ -11,7 +11,7 @@ class HomeRecipeScreen extends StatefulWidget {
 }
 
 class _HomeRecipeScreenState extends State<HomeRecipeScreen> {
-  final String appBarTitle = "오늘 저녁은\n뭘 만들어 먹을까?";
+  final String appBarTitle = "    오늘 저녁은\n    뭘 만들어 먹을까?";
 
   late PageController _pageController;
   final int _currentPage = 0;
@@ -39,10 +39,8 @@ class _HomeRecipeScreenState extends State<HomeRecipeScreen> {
         key: scaffoldKey,
         appBar: CustomAppBar(
           height: 120.v,
-          title: AppbarTitle(
-            text: appBarTitle,
-            margin: EdgeInsets.only(left: 21.h),
-          ),
+          titleAlign: Alignment.centerLeft,
+          title: appBarTitle,
           actions: [
             Container(
               padding: EdgeInsets.only(right: 21.h, top: 30.v),

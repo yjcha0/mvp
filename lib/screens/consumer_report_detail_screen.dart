@@ -35,20 +35,7 @@ class _ConsumerReportDetailScreenState
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                consumerReportTitle,
-                style: TextStyle(
-                  color: appTheme.black900,
-                  fontSize: 20.h,
-                ),
-              ),
-            ),
-          ),
+          title: consumerReportTitle,
           actions: [
             Align(
               alignment: Alignment.center,

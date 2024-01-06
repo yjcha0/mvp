@@ -55,19 +55,7 @@ class _OrderDetailScreen2State extends State<OrderDetailScreen2>
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                OrderDetailScreen2.orderDetail2Title,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: OrderDetailScreen2.orderDetail2Title,
           actions: [
             Align(
               alignment: Alignment.center,

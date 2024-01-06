@@ -29,20 +29,7 @@ class ConsumerReportScreen extends StatelessWidget {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                myFridgeTitle,
-                style: TextStyle(
-                  color: appTheme.black900,
-                  fontSize: 20.h,
-                ),
-              ),
-            ),
-          ),
+          title: myFridgeTitle,
           actions: [
             Align(
               alignment: Alignment.center,

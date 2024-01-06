@@ -47,20 +47,7 @@ class _ShoppingbagScreenState extends State<ShoppingbagScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                ShoppingbagScreen.ShoppingBagTitle,
-                style: TextStyle(
-                  color: appTheme.black900,
-                  fontSize: 20.h,
-                ),
-              ),
-            ),
-          ),
+          title: ShoppingbagScreen.ShoppingBagTitle,
           actions: [
             Align(
               alignment: Alignment.center,

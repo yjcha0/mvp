@@ -40,19 +40,7 @@ class MyFridgeStockDetail4 extends StatelessWidget {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                myFridgeStockTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: myFridgeStockTitle,
           actions: [
             Align(
               alignment: Alignment.center,

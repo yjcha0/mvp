@@ -23,6 +23,9 @@ export 'package:mvp/models/recipe_models.dart';
 export 'package:mvp/models/lifehack_models.dart';
 export 'package:mvp/models/doughnut_models.dart';
 export 'package:mvp/models/chart_models.dart';
+export 'package:mvp/models/garlic_models.dart';
+export 'package:mvp/models/order_category_models.dart';
+export 'package:mvp/models/recipe_category_models.dart';
 
 export 'package:mvp/theme/theme_helper.dart';
 export 'package:mvp/theme/text_style.dart';
@@ -52,3 +55,4 @@ export 'package:mvp/widgets/consumer_report_chart.dart';
 export 'package:mvp/widgets/legend_widget.dart';
 export 'package:mvp/widgets/single_post_header.dart';
 export 'package:mvp/widgets/recipe_preview.dart';
+export 'package:mvp/widgets/order_category_card.dart';

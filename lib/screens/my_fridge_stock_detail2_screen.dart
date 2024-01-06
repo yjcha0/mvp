@@ -38,19 +38,7 @@ class _MyFridgeStockDetailScreen2State
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                MyFridgeStockDetailScreen2.myFridgeStockTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: MyFridgeStockDetailScreen2.myFridgeStockTitle,
           actions: [
             Align(
               alignment: Alignment.center,

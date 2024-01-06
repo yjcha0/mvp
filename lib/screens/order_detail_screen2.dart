@@ -5,7 +5,7 @@ import 'package:mvp/screens/order_detail2_screen.dart';
 class Order2DetailScreen extends StatefulWidget {
   const Order2DetailScreen({Key? key}) : super(key: key);
 
-  static const String order2DetailTitle = '지금 냉장고에 없거나 얼마 안남았어요';
+  static const String order2DetailTitle = '얼마 안남았어요';
 
   @override
   State<Order2DetailScreen> createState() => _OrderDetailScreenState();
@@ -41,19 +41,7 @@ class _OrderDetailScreenState extends State<Order2DetailScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                Order2DetailScreen.order2DetailTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: Order2DetailScreen.order2DetailTitle,
           actions: [
             Align(
               alignment: Alignment.center,
@@ -72,7 +60,7 @@ class _OrderDetailScreenState extends State<Order2DetailScreen> {
         body: GridView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 20,
+          itemCount: garlicModel.length,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -84,7 +72,7 @@ class _OrderDetailScreenState extends State<Order2DetailScreen> {
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   child: Image(
-                    image: AssetImage(ImageConstant.garlic),
+                    image: AssetImage(garlicModel[index]['image']!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -97,14 +85,14 @@ class _OrderDetailScreenState extends State<Order2DetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "마늘 A",
+                      garlicModel[index]['title']!,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.h,
                       ),
                     ),
                     Text(
-                      "2,700원",
+                      garlicModel[index]['price']!,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.h,

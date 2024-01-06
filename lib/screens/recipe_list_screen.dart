@@ -59,19 +59,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                RecipeListScreen.myFridgeTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: RecipeListScreen.myFridgeTitle,
           actions: [
             Align(
               alignment: Alignment.center,

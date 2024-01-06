@@ -11,6 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.centerTitle,
     this.actions,
+    this.titleAlign,
   }) : super(
           key: key,
         );
@@ -21,11 +22,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final Widget? leading;
 
-  final Widget? title;
+  final String? title;
 
   final bool? centerTitle;
 
   final List<Widget>? actions;
+
+  final Alignment? titleAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       leadingWidth: leadingWidth ?? 0,
       leading: leading,
-      title: title,
+      title: Align(
+        alignment: titleAlign ?? Alignment.center,
+        child: Text(
+          title ?? "",
+          style: TextStyle(
+            fontSize: 25.adaptSize,
+            fontWeight: FontWeight.bold,
+            color: appTheme.black900,
+          ),
+        ),
+      ),
       titleSpacing: 0,
       centerTitle: centerTitle ?? false,
       actions: actions,

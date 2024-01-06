@@ -42,19 +42,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                OrderDetailScreen.orderDetailTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: OrderDetailScreen.orderDetailTitle,
           actions: [
             Align(
               alignment: Alignment.center,
@@ -73,7 +61,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
         body: GridView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 20,
+          itemCount: garlicModel.length,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -95,7 +83,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       child: Image(
-                        image: AssetImage(ImageConstant.garlic),
+                        image: AssetImage(garlicModel[index]['image']!),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -108,14 +96,14 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "마늘 A",
+                          garlicModel[index]['title']!,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.h,
                           ),
                         ),
                         Text(
-                          "2,700원",
+                          garlicModel[index]['price']!,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.h,

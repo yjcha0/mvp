@@ -39,12 +39,7 @@ class _AddressMapScreenState extends State<AddressMapScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Text(
-            AddressMapScreen.checkLocation,
-            style: CustomTextStyles.titleLarge.copyWith(
-              color: appTheme.black900,
-            ),
-          ),
+          title: AddressMapScreen.checkLocation,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,

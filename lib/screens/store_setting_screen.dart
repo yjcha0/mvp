@@ -77,12 +77,7 @@ class _StoreSettingScreenState extends State<StoreSettingScreen> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Text(
-            StoreSettingScreen.storeSettingTitle,
-            style: CustomTextStyles.titleLarge.copyWith(
-              color: appTheme.black900,
-            ),
-          ),
+          title: StoreSettingScreen.storeSettingTitle,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,

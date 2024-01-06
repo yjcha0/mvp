@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
 import 'package:mvp/core/sizes.dart';
+import 'package:mvp/screens/order_detail_screen.dart';
 import 'package:mvp/screens/order_detail_screen2.dart';
 import 'package:mvp/widgets/category_appbar.dart';
 import 'package:mvp/widgets/order_card.dart';
-import 'package:mvp/widgets/order_category_icon.dart';
 import 'package:mvp/widgets/order_onsale_card.dart';
 import 'package:mvp/widgets/order_recommend_card.dart';
 
@@ -57,19 +57,7 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
           ),
           leadingWidth: 34.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                OrderScreen.orderTitle,
-                style: CustomTextStyles.titleLarge.copyWith(
-                  color: appTheme.black900,
-                ),
-              ),
-            ),
-          ),
+          title: OrderScreen.orderTitle,
           actions: [
             Align(
               alignment: Alignment.center,
@@ -117,7 +105,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: AppbarSearchview(
                         padding: EdgeInsets.only(left: 21.h),
                         width: 300.h,
-                        hintText: "주소를 입력하세요..",
+                        hintText: "주문하실 재료를 검색하세요..",
                         controller: searchController,
                       ),
                     ),
@@ -126,113 +114,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     SizedBox(width: 21.h),
                   ],
                 ),
-                showCategory
-                    ? GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                        ),
-                        itemCount: 12,
-                        itemBuilder: (BuildContext context, int index) {
-                          return OrderCategoryIcon(
-                            iconImagePath: ImageConstant.imgImage52,
-                            iconTitle: '소스/조미료',
-                          );
-                        },
-                      )
-                    : SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: 30.h,
-                            bottom: 10.h,
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage4539x42,
-                                iconTitle: '채소',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage4642x42,
-                                iconTitle: '육류',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage4742x42,
-                                iconTitle: '유제품',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage4842x42,
-                                iconTitle: '계란',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage4942x42,
-                                iconTitle: '물/음료',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage5042x42,
-                                iconTitle: '빵',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                              OrderCategoryIcon(
-                                iconImagePath: ImageConstant.imgImage52,
-                                iconTitle: '소스/조미료',
-                              ),
-                              SizedBox(
-                                width: 15.h,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showCategory = !showCategory;
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 25.v),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "카테고리 전체 보기",
-                          style: TextStyle(
-                            fontSize: 15.h,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                OrderCategoryCard(categoryToShow: categories),
                 CategoryAppbar(
                   text: "얼마 안남았어요",
                   onPressed: _onPressed,
@@ -248,13 +130,24 @@ class _OrderScreenState extends State<OrderScreen> {
                       OrderCard(
                         foodImage: ImageConstant.imgOrderwelshonion,
                         foodName: "대파",
+                        date: 4,
+                        gram: 20,
                       ),
                       SizedBox(
                         width: 20.h,
                       ),
                       OrderCard(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            createBottomTopRouteTo(
+                              const OrderDetailScreen(),
+                            ),
+                          );
+                        },
                         foodImage: ImageConstant.imgOrdergarlic,
                         foodName: "마늘",
+                        date: 10,
+                        gram: 10,
                       ),
                       SizedBox(
                         width: 20.h,
@@ -262,6 +155,8 @@ class _OrderScreenState extends State<OrderScreen> {
                       OrderCard(
                         foodImage: ImageConstant.imgOrdermeat,
                         foodName: "돼지고기",
+                        date: 2,
+                        gram: 150,
                       ),
                       SizedBox(
                         width: 20.h,

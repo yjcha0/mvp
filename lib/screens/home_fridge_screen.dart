@@ -7,7 +7,7 @@ import 'package:mvp/core/app_export.dart';
 class HomeFridgeScreen extends StatelessWidget {
   HomeFridgeScreen({Key? key}) : super(key: key);
 
-  final String appBarTitle = "재료 관리는\n여기서 한눈에 하자!";
+  final String appBarTitle = "    재료 관리는\n    여기서 한눈에 하자!";
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -19,10 +19,8 @@ class HomeFridgeScreen extends StatelessWidget {
         key: scaffoldKey,
         appBar: CustomAppBar(
           height: 120.v,
-          title: AppbarTitle(
-            text: appBarTitle,
-            margin: EdgeInsets.only(left: 21.h),
-          ),
+          titleAlign: Alignment.centerLeft,
+          title: appBarTitle,
           actions: [
             Container(
               padding: EdgeInsets.only(right: 21.h, top: 30.v),

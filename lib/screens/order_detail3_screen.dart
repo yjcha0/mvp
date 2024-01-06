@@ -35,20 +35,7 @@ class _OrderDetailScreen3State extends State<OrderDetailScreen3> {
             ),
           ),
           leadingWidth: 21.h + 10.adaptSize,
-          title: Align(
-            alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: 21.h),
-            child: Padding(
-              padding: EdgeInsets.only(left: 21.h),
-              child: Text(
-                OrderDetailScreen3.OrderDetail3Title,
-                style: TextStyle(
-                  color: appTheme.black900,
-                  fontSize: 20.h,
-                ),
-              ),
-            ),
-          ),
+          title: OrderDetailScreen3.OrderDetail3Title,
           actions: [
             Align(
               alignment: Alignment.center,
