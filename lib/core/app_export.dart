@@ -26,6 +26,9 @@ export 'package:mvp/models/chart_models.dart';
 export 'package:mvp/models/garlic_models.dart';
 export 'package:mvp/models/order_category_models.dart';
 export 'package:mvp/models/recipe_category_models.dart';
+export 'package:mvp/models/fridge_category_models.dart';
+export 'package:mvp/models/fridge_stock_models.dart';
+export 'package:mvp/models/fridge_filter_models.dart';
 
 export 'package:mvp/theme/theme_helper.dart';
 export 'package:mvp/theme/text_style.dart';

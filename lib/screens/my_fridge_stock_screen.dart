@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
+import 'package:mvp/widgets/category_appbar.dart';
 
 class MyFridgeStockScreen extends StatelessWidget {
   MyFridgeStockScreen({Key? key}) : super(key: key);
@@ -74,71 +75,38 @@ class MyFridgeStockScreen extends StatelessWidget {
               SizedBox(height: 10.v),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 21.h),
                   children: [
                     SizedBox(height: 20.v),
-                    GestureDetector(
-                      onTap: () {
+                    CategoryAppbar(
+                      text: "유통기한이 다가와요!",
+                      onPressed: () {
                         Navigator.of(context).push(createLeftRightRouteTo(
                             const MyFridgeStockDetailScreen1()));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '유통기한이 다가와요!',
-                            style: TextStyle(
-                              fontSize: 18.h,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_circle_right_outlined,
-                            size: 30.adaptSize,
-                          ),
-                        ],
-                      ),
                     ),
                     SizedBox(height: 10.v),
                     const IngredientCardWidget(
-                      ingredientName: '양파 한망 묶음 (4개)',
-                      expirationDate: '2023년 11월 02일',
-                      expirationDetail: '일주일',
-                      remainAmount: 200,
-                      totalAmount: 400,
+                      stockTitle: '양파 한망 묶음 (4개)',
+                      stockDate: '2023년 11월 02일',
+                      stockExpiration: 7,
+                      stockRemainAmount: 200,
+                      stockTotalAmount: 400,
                     ),
                     SizedBox(height: 10.v),
                     const IngredientCardWidget(
-                      ingredientName: '마늘 200g',
-                      expirationDate: '2023년 10월 25일',
-                      expirationDetail: '얼마 안',
-                      remainAmount: 130,
-                      totalAmount: 200,
+                      stockTitle: '마늘 200g',
+                      stockDate: '2023년 10월 25일',
+                      stockExpiration: 2,
+                      stockRemainAmount: 130,
+                      stockTotalAmount: 200,
                     ),
                     SizedBox(height: 50.v),
-                    GestureDetector(
-                      onTap: () {
+                    CategoryAppbar(
+                      text: "잠깐! 이거 찾으세요?",
+                      onPressed: () {
                         Navigator.of(context).push(createLeftRightRouteTo(
                             const MyFridgeStockDetailScreen2()));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '잠깐! 이거 찾으세요?',
-                            style: TextStyle(
-                              fontSize: 18.h,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_circle_right_outlined,
-                            size: 30.adaptSize,
-                          ),
-                        ],
-                      ),
                     ),
                     SizedBox(height: 10.v),
                     const IngredientFreqCard(
@@ -153,100 +121,119 @@ class MyFridgeStockScreen extends StatelessWidget {
                       lastPurchase: '2023년 10월 25일',
                     ),
                     SizedBox(height: 50.v),
-                    GestureDetector(
-                      onTap: () {
+                    CategoryAppbar(
+                      text: "가지고 있는 재료들 보기",
+                      onPressed: () {
                         Navigator.of(context).push(createLeftRightRouteTo(
                             const MyFridgeStockDetailScreen3()));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '가지고 있는 재료들 보기',
-                            style: TextStyle(
-                              fontSize: 18.h,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_circle_right_outlined,
-                            size: 30.adaptSize,
-                          ),
-                        ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 21.h),
+                      child: Text(
+                        "식재료",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.h,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 30.v),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.salad,
-                              iconTitle: '야채',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.meat,
-                              iconTitle: '육류',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.fish,
-                              iconTitle: '생선',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.egg,
-                              iconTitle: '계란',
-                            ),
-                          ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.v),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        clipBehavior: Clip.none,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisSpacing: 8.h, crossAxisCount: 5),
+                        itemCount: FridgeCategories.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 70.adaptSize,
+                                height: 70.adaptSize,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          FridgeCategories[index]['image']!)),
+                                  border: Border.all(
+                                    color: const Color(0xFFB6D9ED),
+                                    width: 2.0,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 5.v),
+                              Expanded(
+                                child: Text(
+                                  FridgeCategories[index]['category']!,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15.h,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 30.v),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.dairy,
-                              iconTitle: '유제품',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.bread,
-                              iconTitle: '빵',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.nuts,
-                              iconTitle: '견과류',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.fruit,
-                              iconTitle: '과일',
-                            ),
-                          ],
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 21.h),
+                      child: Text(
+                        "조미료",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.h,
                         ),
-                        SizedBox(height: 30.v),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.oil,
-                              iconTitle: '오일',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.spices,
-                              iconTitle: '향신료',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.beverage,
-                              iconTitle: '음료',
-                            ),
-                            FoodCategoryIcon(
-                              iconImagePath: ImageConstant.tableWare,
-                              iconTitle: '식기류',
-                            ),
-                          ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.v),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        clipBehavior: Clip.none,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisSpacing: 8.h, crossAxisCount: 5),
+                        itemCount: 8,
+                        itemBuilder: (BuildContext context, int index) =>
+                            InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 70.adaptSize,
+                                height: 70.adaptSize,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          FridgeCategories[index]['image']!)),
+                                  border: Border.all(
+                                    color: const Color(0xFFB6D9ED),
+                                    width: 2.0,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 5.v),
+                              Expanded(
+                                child: Text(
+                                  FridgeCategories[index]['category']!,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15.h,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
                     SizedBox(height: 50.v),
                   ],

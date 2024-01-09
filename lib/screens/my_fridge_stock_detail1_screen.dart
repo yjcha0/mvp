@@ -111,80 +111,61 @@ class _MyFridgeStockDetailScreen1State
                   padding: EdgeInsets.symmetric(horizontal: 21.h),
                   children: [
                     showFilter
-                        ? Container(
-                            width: mediaQueryData.size.width,
-                            height: 130.v,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage(ImageConstant.imgFridgeFilter),
+                        ? GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            clipBehavior: Clip.none,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 5,
+                              crossAxisSpacing: 10.h,
+                              mainAxisSpacing: 15.v,
+                              crossAxisCount: 3,
+                            ),
+                            itemCount: fridgeFilter.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                InkWell(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.h),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey[400]!.withOpacity(0.9),
+                                      offset: Offset(0, 3.v),
+                                      blurRadius: 1,
+                                    ),
+                                  ],
+                                ),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    fridgeFilter[index]['title']!,
+                                    style: TextStyle(
+                                      fontSize: 17.h,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           )
                         : Container(),
                     SizedBox(height: 20.v),
-                    const IngredientCardWidget(
-                      ingredientName: '양파 한망 묶음 (4개)',
-                      expirationDate: '2023년 11월 02일',
-                      expirationDetail: '얼마 안',
-                      remainAmount: 200,
-                      totalAmount: 400,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '마늘 200g',
-                      expirationDate: '2023년 10월 25일',
-                      expirationDetail: '하루',
-                      remainAmount: 130,
-                      totalAmount: 200,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '배추 한 포기',
-                      expirationDate: '2023년 10월 11일',
-                      expirationDetail: '이틀',
-                      remainAmount: 200,
-                      totalAmount: 250,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '소고기 등심 600g',
-                      expirationDate: '2023년 10월 27일',
-                      expirationDetail: '4일',
-                      remainAmount: 500,
-                      totalAmount: 600,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '돼지고기 삼겹살 450g',
-                      expirationDate: '2023년 10월 21일',
-                      expirationDetail: '일주일',
-                      remainAmount: 100,
-                      totalAmount: 450,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '계란 한 판',
-                      expirationDate: '2023년 9월 30일',
-                      expirationDetail: '10일',
-                      remainAmount: 9,
-                      totalAmount: 30,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '대파 한 단',
-                      expirationDate: '2023년 10월 24일',
-                      expirationDetail: '10일',
-                      remainAmount: 135,
-                      totalAmount: 180,
-                    ),
-                    SizedBox(height: 15.v),
-                    const IngredientCardWidget(
-                      ingredientName: '마늘 200g',
-                      expirationDate: '2023년 11월 01일',
-                      expirationDetail: '2주',
-                      remainAmount: 130,
-                      totalAmount: 200,
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: fridgeStockTitleList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return IngredientCardWidget(
+                          stockTitle: fridgeStock[index]['title']!,
+                          stockDate: fridgeStock[index]['date']!,
+                          stockExpiration: fridgeStock[index]['expiration']!,
+                          stockRemainAmount: fridgeStock[index]['amount']!,
+                          stockTotalAmount: fridgeStock[index]['totalAmount']!,
+                        );
+                      },
                     ),
                     SizedBox(height: 50.v),
                   ],

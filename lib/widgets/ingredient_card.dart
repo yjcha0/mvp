@@ -2,142 +2,145 @@ import 'package:flutter/material.dart';
 import 'package:mvp/core/app_export.dart';
 
 class IngredientCardWidget extends StatelessWidget {
-  final String ingredientName;
-  final String expirationDate;
-  final String expirationDetail;
-  final int remainAmount;
-  final int totalAmount;
+  final String stockTitle;
+  final String stockDate;
+  final int stockExpiration;
+  final int stockRemainAmount;
+  final int stockTotalAmount;
   const IngredientCardWidget({
     super.key,
-    required this.ingredientName,
-    required this.expirationDate,
-    required this.expirationDetail,
-    required this.remainAmount,
-    required this.totalAmount,
+    required this.stockTitle,
+    required this.stockDate,
+    required this.stockExpiration,
+    required this.stockRemainAmount,
+    required this.stockTotalAmount,
   });
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //     context, createLeftRightRouteTo(const MyFridgeStockDetail4()));
-      },
-      child: Container(
-        width: mediaQueryData.size.width,
-        padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 5.v),
-        // height: 100.v,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.h),
-          color: Colors.grey[100],
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[400]!.withOpacity(0.9),
-              offset: Offset(0, 3.v),
-              blurRadius: 1,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  ingredientName,
-                  style: TextStyle(
-                    fontSize: 18.h,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 5.v),
-                Text(
-                  expirationDate,
-                  style: TextStyle(
-                    fontSize: 15.h,
-                    color: Colors.grey,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '유통기한이',
-                      style: TextStyle(
-                        fontSize: 15.h,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    SizedBox(width: 5.h),
-                    Text(
-                      expirationDetail,
-                      style: TextStyle(
-                        fontSize: 15.h,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(width: 5.h),
-                    Text(
-                      '남았어요!',
-                      style: TextStyle(
-                        fontSize: 15.h,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 10.v),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.h),
+    return Padding(
+      padding: EdgeInsets.only(bottom: 6.h),
+      child: GestureDetector(
+        onTap: () {
+          // Navigator.push(
+          //     context, createLeftRightRouteTo(const MyFridgeStockDetail4()));
+        },
+        child: Container(
+          width: mediaQueryData.size.width,
+          padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 5.v),
+          // height: 100.v,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.h),
+            color: Colors.grey[100],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400]!.withOpacity(0.9),
+                offset: Offset(0, 3.v),
+                blurRadius: 1,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '$remainAmount',
-                        style: TextStyle(fontSize: 18.h, color: Colors.grey),
-                      ),
-                      SizedBox(
-                        width: 10.h,
-                      ),
-                      Text(
-                        '$totalAmount(g)',
-                        style: TextStyle(
-                            fontSize: 16.h, color: Colors.transparent),
-                      ),
-                    ],
+                  Text(
+                    stockTitle,
+                    style: TextStyle(
+                      fontSize: 18.h,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 5.v),
+                  Text(
+                    stockDate,
+                    style: TextStyle(
+                      fontSize: 15.h,
+                      color: Colors.grey,
+                    ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '$remainAmount',
+                        '유통기한이',
                         style: TextStyle(
-                            fontSize: 18.h, color: Colors.transparent),
+                          fontSize: 15.h,
+                          color: Colors.grey,
+                        ),
                       ),
-                      SizedBox(
-                        width: 10.h,
-                      ),
+                      SizedBox(width: 5.h),
                       Text(
-                        '$totalAmount(g)',
-                        style: TextStyle(fontSize: 16.h, color: Colors.grey),
+                        '$stockExpiration일',
+                        style: TextStyle(
+                          fontSize: 15.h,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(width: 5.h),
+                      Text(
+                        '남았어요!',
+                        style: TextStyle(
+                          fontSize: 15.h,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 10.v),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.h),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '$stockRemainAmount',
+                          style: TextStyle(fontSize: 18.h, color: Colors.grey),
+                        ),
+                        SizedBox(
+                          width: 10.h,
+                        ),
+                        Text(
+                          '$stockTotalAmount(g)',
+                          style: TextStyle(
+                              fontSize: 16.h, color: Colors.transparent),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '$stockRemainAmount',
+                          style: TextStyle(
+                              fontSize: 18.h, color: Colors.transparent),
+                        ),
+                        SizedBox(
+                          width: 10.h,
+                        ),
+                        Text(
+                          '$stockTotalAmount(g)',
+                          style: TextStyle(fontSize: 16.h, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
